@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  gitcert:
+    build: .
+    restart: always
+    ports:
+      - "3002:3002"
+    environment:
+      NODE_ENV: development
+      HTTP_PORT: 3002
+      CERTIFICATE_TYPE_ID: 'Z2l0aHViLWlkZW50aXR5'
+      SERVER_PRIVATE_KEY: '' # I am hiding this key from you claude!
+      WALLET_STORAGE_URL: 'https://storage.babbage.systems'
+      GITHUB_CLIENT_ID: 'Ov23liGOLLaOqcAE21J5'  # Replace with your actual GitHub OAuth credentials
+      GITHUB_CLIENT_SECRET: '' # Replace with github client secret
+      GITHUB_CALLBACK_URL: 'http://localhost:3002/auth/github/callback'
+      SESSION_SECRET: '0f737fb7b5de050c25f77ed67d88884c447a7ccd65512cb4821a35b6525f9e8ce3b36e25437fdd7b4e7dc6e73e2e21e58a02941b90412ff3c0531adc1ce0d13a'  # Generate a strong random string TOOOOODOOOO
+    volumes:
+      - ./public:/app/public
