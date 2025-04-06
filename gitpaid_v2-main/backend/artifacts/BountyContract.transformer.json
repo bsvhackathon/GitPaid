@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "errors": [],
+  "scryptfile": "BountyContract.scrypt",
+  "sourceMapFile": "BountyContract.scrypt.map",
+  "ctxMethods": [
+    "addFunds",
+    "payBounty",
+    "withdraw"
+  ]
+}

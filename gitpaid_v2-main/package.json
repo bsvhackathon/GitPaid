@@ -1,0 +1,19 @@
+{
+    "name": "metamarket",
+    "private": true,
+    "version": "1.0.0",
+    "description": "Standard BSV project structure",
+    "dependencies": {
+      "@bsv/cars-cli": "^1.1.4",
+      "@bsv/lars": "^1.4.1"
+    },
+    "scripts": {
+      "lars": "lars",
+      "cars": "cars",
+      "lars:config": "lars config",
+      "start": "lars start",
+      "build": "cars build 1",
+      "deploy": "cars deploy now 1"
+    }
+  }
+  
