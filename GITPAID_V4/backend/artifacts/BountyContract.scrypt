@@ -1,0 +1,57 @@
+struct __scrypt_ts_Change {  int amount;  Ripemd160 address;}
+
+contract BountyContract {
+  @state PubKey repoOwner;
+  @state PubKey certServerKey;
+  bytes __scrypt_ts_ctx_hashoutputs;
+  int __scrypt_ts_ctx_value;
+  __scrypt_ts_Change __scrypt_ts_change;
+  constructor(PubKey repoOwner, PubKey certServerKey) {
+    this.repoOwner = repoOwner;
+    this.certServerKey = certServerKey;
+  }
+  public function addFunds(SigHashPreimage __scrypt_ts_txPreimage, int __scrypt_ts_changeAmount, Ripemd160 __scrypt_ts_changeAddress) {
+    require(Tx.checkPreimageSigHashType(__scrypt_ts_txPreimage, SigHashType(b'41')));
+    this.__scrypt_ts_ctx_hashoutputs = SigHash.hashOutputs(__scrypt_ts_txPreimage);
+    this.__scrypt_ts_ctx_value = SigHash.value(__scrypt_ts_txPreimage);
+    this.__scrypt_ts_change = {__scrypt_ts_changeAmount, __scrypt_ts_changeAddress};
+    bytes out = this.buildStateOutput(this.__scrypt_ts_ctx_value);
+    bytes outputs = out + this.buildChangeOutput();
+    require(hash256(outputs) == this.__scrypt_ts_ctx_hashoutputs);
+  }
+  public function payBounty(Sig repoOwnerSig, Sig certServerSig, PubKey userPubKey, bytes eventID, int amount, SigHashPreimage __scrypt_ts_txPreimage, int __scrypt_ts_changeAmount, Ripemd160 __scrypt_ts_changeAddress) {
+    require(Tx.checkPreimageSigHashType(__scrypt_ts_txPreimage, SigHashType(b'41')));
+    this.__scrypt_ts_ctx_hashoutputs = SigHash.hashOutputs(__scrypt_ts_txPreimage);
+    this.__scrypt_ts_ctx_value = SigHash.value(__scrypt_ts_txPreimage);
+    this.__scrypt_ts_change = {__scrypt_ts_changeAmount, __scrypt_ts_changeAddress};
+    require(checkSig(repoOwnerSig, this.repoOwner));
+    require(checkSig(certServerSig, this.certServerKey));
+    require(amount <= this.__scrypt_ts_ctx_value);
+    Ripemd160 devAddr = hash160(userPubKey);
+    bytes outputs = Utils.buildOutput(Utils.buildPublicKeyHashScript(devAddr), amount);
+    int remain = this.__scrypt_ts_ctx_value - amount;
+    if(remain > 0) {
+        outputs += this.buildStateOutput(remain);
+      }
+    outputs += this.buildChangeOutput();
+    require(hash256(outputs) == this.__scrypt_ts_ctx_hashoutputs);
+  }
+  public function withdraw(Sig repoOwnerSig, int amount, SigHashPreimage __scrypt_ts_txPreimage, int __scrypt_ts_changeAmount, Ripemd160 __scrypt_ts_changeAddress) {
+    require(Tx.checkPreimageSigHashType(__scrypt_ts_txPreimage, SigHashType(b'41')));
+    this.__scrypt_ts_ctx_hashoutputs = SigHash.hashOutputs(__scrypt_ts_txPreimage);
+    this.__scrypt_ts_ctx_value = SigHash.value(__scrypt_ts_txPreimage);
+    this.__scrypt_ts_change = {__scrypt_ts_changeAmount, __scrypt_ts_changeAddress};
+    require(checkSig(repoOwnerSig, this.repoOwner));
+    require(amount <= this.__scrypt_ts_ctx_value);
+    Ripemd160 ownerAddr = hash160(this.repoOwner);
+    bytes outputs = Utils.buildOutput(Utils.buildPublicKeyHashScript(ownerAddr), amount);
+    int leftover = this.__scrypt_ts_ctx_value - amount;
+    if(leftover > 0) {
+        outputs += this.buildStateOutput(leftover);
+      }
+    outputs += this.buildChangeOutput();
+    require(hash256(outputs) == this.__scrypt_ts_ctx_hashoutputs);
+  }
+  function buildStateOutput(int amount) : bytes {  return Utils.buildOutput(this.getStateScript(), amount);}
+  function buildChangeOutput() : bytes {  return this.__scrypt_ts_change.amount > 0 ? Utils.buildOutput(Utils.buildPublicKeyHashScript(this.__scrypt_ts_change.address), this.__scrypt_ts_change.amount) : b'';}
+}

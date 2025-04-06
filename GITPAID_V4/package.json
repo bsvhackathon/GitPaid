@@ -1,0 +1,25 @@
+{
+  "name": "gitpaid",
+  "private": true,
+  "version": "1.0.0",
+  "description": "GitHub issues with BSV bounties",
+  "scripts": {
+    "lars": "lars",
+    "cars": "cars",
+    "lars:config": "lars config",
+    "start": "lars start",
+    "start:backend": "cd backend && npm run dev",
+    "start:frontend": "cd frontend && npm run start",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "deploy": "cars deploy now 1"
+  },
+  "keywords": ["github", "bounty", "bsv", "bitcoin"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bsv/cars-cli": "^1.1.4",
+    "@bsv/lars": "^1.4.1"
+  }
+}
