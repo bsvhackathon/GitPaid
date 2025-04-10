@@ -22,13 +22,14 @@
         }
       },
     "scripts": {
-        "build": "tsc",
+        "build": "tsc -b",
         "start": "node dist/server.js",
         "dev": "nodemon --exec ts-node --esm src/server.ts",
         "compile": "scrypt-cli c",
         "test": "echo \"Error: no test specified\" && exit 1",
         "build-test-bounty": "tsc --esModuleInterop backend/tests/test-bounty.ts --outDir dist/tests",
-        "run-test-bounty": "node dist/tests/test-bounty.js",
+        "run-test-bounty": "node dist/esm/src/tests/test-bounty.js",
+        "run-query-bounty": "node dist/esm/src/tests/test-query.js",
         "test-bounty": "npm run build-test-bounty && npm run run-test-bounty"
     },
     "keywords": [

@@ -1,37 +1,15 @@
 {
-    "compilerOptions": {
-      "lib": [
-        "dom",
-        "ESNext"
-      ],
-      "target": "ES2020",
-      "module": "NodeNext",
-      "moduleDetection": "force",
-      "moduleResolution": "NodeNext",
-      "rootDir": "./",
-      "baseUrl": "./",
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true,
-      "strict": true,
-      "skipLibCheck": true,
-      "outDir": "dist",
-      "sourceMap": true,
-      "declaration": true,
-      "resolveJsonModule": true,
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "emitDeclarationOnly": true,
-      "declarationMap": true,
-      "isolatedModules": true,
-      "strictNullChecks": true,
-      "downlevelIteration": false,
-      "allowSyntheticDefaultImports": true
+  "files": [],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "ESNext"
+  },
+  "references": [
+    {
+      "path": "tsconfig.esm.json"
     },
-    "files": [
-      "mod.ts"
-    ],
-    "include": [
-      "src"
-    ],
-    "exclude": ["node_modules", "dist"]
-  }
+    {
+      "path": "tsconfig.types.json"
+    }
+  ]
+}
