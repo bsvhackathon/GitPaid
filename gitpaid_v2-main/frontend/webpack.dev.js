@@ -17,13 +17,13 @@ module.exports = merge(common, {
     proxy: [
       {
         context: ['/api'],
-        target: 'http://localhost:8080',  
+        target: 'http://localhost:8088',  
         secure: false,
         changeOrigin: true
       },
       {
         context: ['/auth'],
-        target: 'http://localhost:8080',
+        target: 'http://localhost:8088',
         secure: false,
         changeOrigin: true,
       }

@@ -20,12 +20,12 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 // MongoDB setup
-const mongoClient = new MongoClient(process.env.MONGODB_URI || 'mongodb://0.0.0.0:27018');
+const mongoClient = new MongoClient('mongodb://localhost:27017/overlay-db');
 let db: Db;
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = 8088;
 
 // Required environment variables
 const requiredEnvVars = [
@@ -181,7 +181,7 @@ app.use(passport.session());
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID!,
   clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-  callbackURL: "http://localhost:8080/auth/github/callback",
+  callbackURL: "http://localhost:8088/auth/github/callback",
   scope: ['user:email', 'read:org', 'repo']
 },
 async (accessToken: string, refreshToken: string, profile: any, done: any) => {
