@@ -1,8 +1,5 @@
 import {
     assert,
-    ByteString,
-    PubKey,
-    Sig,
     SmartContract,
     prop,
     method,
@@ -11,6 +8,7 @@ import {
     pubKey2Addr,
     SigHash
 } from 'scrypt-ts'
+import type { ByteString, PubKey, Sig } from 'scrypt-ts'
 
 /**
  * A smart contract for GitHub issues-based bounties.

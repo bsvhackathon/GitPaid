@@ -3,7 +3,24 @@
     "version": "1.0.0",
     "description": "Backend server for BSV Repository Bounties",
     "main": "dist/server.js",
+    "module": "dist/esm/mod.js",
+    "types": "dist/types/mod.d.ts",
     "type": "module",
+    "files": [
+        "dist",
+        "src",
+        "mod.ts"
+      ],
+      "exports": {
+        ".": {
+          "types": "./dist/types/mod.d.ts",
+          "import": "./dist/esm/mod.js"
+        },
+        "./*.ts": {
+          "types": "./dist/types/src/*.d.ts",
+          "import": "./dist/esm/src/*.js"
+        }
+      },
     "scripts": {
         "build": "tsc",
         "start": "node dist/server.js",

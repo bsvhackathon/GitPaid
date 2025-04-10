@@ -1,6 +1,133 @@
 {
-  "success": true,
-  "errors": [],
+  "success": false,
+  "errors": [
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 61,
+          "character": 21
+        },
+        "end": {
+          "line": 61,
+          "character": 42
+        }
+      }
+    },
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 62,
+          "character": 31
+        },
+        "end": {
+          "line": 62,
+          "character": 53
+        }
+      }
+    },
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 63,
+          "character": 16
+        },
+        "end": {
+          "line": 63,
+          "character": 23
+        }
+      }
+    },
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 104,
+          "character": 24
+        },
+        "end": {
+          "line": 104,
+          "character": 45
+        }
+      }
+    },
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 108,
+          "character": 20
+        },
+        "end": {
+          "line": 108,
+          "character": 42
+        }
+      }
+    },
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 111,
+          "character": 16
+        },
+        "end": {
+          "line": 111,
+          "character": 23
+        }
+      }
+    },
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 135,
+          "character": 24
+        },
+        "end": {
+          "line": 135,
+          "character": 45
+        }
+      }
+    },
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 139,
+          "character": 20
+        },
+        "end": {
+          "line": 139,
+          "character": 42
+        }
+      }
+    },
+    {
+      "message": "Calling function which returns `any` is not allowed",
+      "srcRange": {
+        "fileName": "/home/ishaan/metanet_project_files/GitPaid/GITPAID_V4/backend/src/contracts/BountyContract.ts",
+        "start": {
+          "line": 142,
+          "character": 16
+        },
+        "end": {
+          "line": 142,
+          "character": 23
+        }
+      }
+    }
+  ],
   "scryptfile": "BountyContract.scrypt",
   "sourceMapFile": "BountyContract.scrypt.map",
   "ctxMethods": [

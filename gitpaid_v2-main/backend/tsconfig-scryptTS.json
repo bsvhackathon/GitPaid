@@ -17,7 +17,7 @@
     "noEmit": true,
     "plugins": [
       {
-        "transform": "/home/bob1/lars-local-1.3.0-npm/meter/backend/node_modules/scrypt-ts-transpiler/dist/index.js",
+        "transform": "/home/ishaan/metanet_project_files/GitPaid/gitpaid_v2-main/backend/node_modules/scrypt-ts-transpiler/dist/index.js",
         "transformProgram": true,
         "outDir": "artifacts"
       }

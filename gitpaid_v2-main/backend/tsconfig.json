@@ -1,8 +1,15 @@
 {
     "compilerOptions": {
+      "lib": [
+        "dom",
+        "ESNext"
+      ],
       "target": "ES2020",
       "module": "NodeNext",
+      "moduleDetection": "force",
       "moduleResolution": "NodeNext",
+      "rootDir": "./",
+      "baseUrl": "./",
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "strict": true,
@@ -12,8 +19,19 @@
       "declaration": true,
       "resolveJsonModule": true,
       "experimentalDecorators": true,
-      "emitDecoratorMetadata": true
+      "emitDecoratorMetadata": true,
+      "emitDeclarationOnly": true,
+      "declarationMap": true,
+      "isolatedModules": true,
+      "strictNullChecks": true,
+      "downlevelIteration": false,
+      "allowSyntheticDefaultImports": true
     },
-    "include": ["src/**/*", "src/utils/bsvWallet.ts"],
+    "files": [
+      "mod.ts"
+    ],
+    "include": [
+      "src"
+    ],
     "exclude": ["node_modules", "dist"]
   }
