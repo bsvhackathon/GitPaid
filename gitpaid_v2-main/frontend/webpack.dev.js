@@ -14,18 +14,20 @@ module.exports = merge(common, {
     },
     static: './public',
     // Add proxy configuration to forward API requests to backend
-    proxy: {
-      '/api': {
+    proxy: [
+      {
+        context: ['/api'],
         target: 'http://localhost:8080',  
         secure: false,
         changeOrigin: true
       },
-      '/auth': {
+      {
+        context: ['/auth'],
         target: 'http://localhost:8080',
         secure: false,
-        changeOrigin: true
+        changeOrigin: true,
       }
-    }
+    ]
   },
   devtool: 'inline-source-map'
 })

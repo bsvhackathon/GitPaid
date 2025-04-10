@@ -1,6 +1,5 @@
 import { AdmittanceInstructions, TopicManager } from '@bsv/overlay'
-import { Transaction, Utils, PublicKey, Script } from '@bsv/sdk'
-import pushdrop from 'pushdrop'
+import { Transaction, Utils, PublicKey, Script, PushDrop} from '@bsv/sdk'
 
 export default class BountyTopicManager implements TopicManager {
   /**
@@ -30,10 +29,7 @@ export default class BountyTopicManager implements TopicManager {
       for (const [index, output] of outputs.entries()) {
         try {
           // Using pushdrop to decode the script
-          const decodedScript = await pushdrop.decode({
-            script: output.lockingScript.toHex(), 
-            fieldFormat: "buffer"
-          })
+          const decodedScript = PushDrop.decode(output.lockingScript)
           
           const fields = decodedScript.fields
           

@@ -1,9 +1,8 @@
 import { LookupService, LookupQuestion, LookupAnswer, LookupFormula } from '@bsv/overlay'
 import { BountyStorage } from './BountyStorage.js'
-import { Script, Utils, Transaction } from '@bsv/sdk'
+import { Script, Utils, Transaction, PushDrop } from '@bsv/sdk'
 import { Db } from 'mongodb'
 import { BountyRecord, BountyReference, RepoIssueReference } from '../types/bounty.js'
-import pushdrop from 'pushdrop'
 
 /**
  * Implements a lookup service for GitHub issue bounties
@@ -23,21 +22,19 @@ class BountyLookupService implements LookupService {
     
     try {
       // Decode the pushdrop script to extract bounty details
-      const decodedScript = pushdrop.decode({ 
-        script: outputScript.toHex(), 
-        fieldFormat: "buffer" 
-      })
+      const decodedScript = PushDrop.decode(outputScript)
+
       
       const fields = decodedScript.fields
       
       // Extract bounty data from pushdrop fields
-      const repoOwner = fields[0]?.toString('utf8')
-      const repoName = fields[1]?.toString('utf8')
-      const issueNumber = parseInt(fields[2]?.toString('utf8'), 10)
-      const amount = parseInt(fields[3]?.toString('utf8'), 10)
-      const funderPublicKey = fields[4]?.toString('utf8')
-      const issueTitle = fields[5]?.toString('utf8') || `Issue #${issueNumber}`
-      const description = fields[6]?.toString('utf8') || `Bounty for ${repoOwner}/${repoName}#${issueNumber}`
+      const repoOwner = fields[0]?.toString()
+      const repoName = fields[1]?.toString()
+      const issueNumber = parseInt(fields[2]?.toString(), 10)
+      const amount = parseInt(fields[3]?.toString(), 10)
+      const funderPublicKey = fields[4]?.toString()
+      const issueTitle = fields[5]?.toString() || `Issue #${issueNumber}`
+      const description = fields[6]?.toString() || `Bounty for ${repoOwner}/${repoName}#${issueNumber}`
       
       console.log(`Lookup Service: Processing new bounty from ${txid}:${outputIndex}`)
       

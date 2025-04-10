@@ -1,5 +1,4 @@
-import { Transaction } from '@bsv/sdk';
-import pushdrop from 'pushdrop';
+import { Transaction, PushDrop } from '@bsv/sdk';
 export default class BountyTopicManager {
     /**
      * Identifies which outputs in a transaction contain valid bounty contracts
@@ -25,10 +24,7 @@ export default class BountyTopicManager {
             for (const [index, output] of outputs.entries()) {
                 try {
                     // Using pushdrop to decode the script
-                    const decodedScript = await pushdrop.decode({
-                        script: output.lockingScript.toHex(),
-                        fieldFormat: "buffer"
-                    });
+                    const decodedScript = PushDrop.decode(output.lockingScript);
                     const fields = decodedScript.fields;
                     // Validate expected fields for a bounty
                     if (fields.length < 7)
