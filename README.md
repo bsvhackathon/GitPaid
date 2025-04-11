@@ -139,7 +139,7 @@ WALLET_STORAGE_URL='https://storage.babbage.systems'
 # Certificate Configuration
 CERTIFICATE_TYPE_ID='Z2l0aHViLWlkZW50aXR5'
 
-
+### 6. Start up lars and run the express server for the backend
 ```bash
 # Move into main directory, you should be in GitPaid/gitpaid_v2-main
 cd gitpaid_v2-main
