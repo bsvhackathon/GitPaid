@@ -1,4 +1,4 @@
-# Git(Whatever I decide on calling it) - Fund GitHub Issues with BSV Bounties (Still in development)
+# GitSats - Fund GitHub Issues with BSV Bounties (Still in development)
 
 Git-something is a platform that allows users to fund GitHub issues with Bitcoin SV (BSV) bounties, incentivizing developers to solve open source problems. The project connects GitHub's issue tracking system with the BSV blockchain, enabling transparent and efficient bounty management.
 
