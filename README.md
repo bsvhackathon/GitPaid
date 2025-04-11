@@ -1,4 +1,4 @@
-# Git(Whatever I decide on calling it) - Fund GitHub Issues with BSV Bounties
+# Git(Whatever I decide on calling it) - Fund GitHub Issues with BSV Bounties (Still in development)
 
 Git-something is a platform that allows users to fund GitHub issues with Bitcoin SV (BSV) bounties, incentivizing developers to solve open source problems. The project connects GitHub's issue tracking system with the BSV blockchain, enabling transparent and efficient bounty management.
 
@@ -63,7 +63,7 @@ npm install
 ```
 
 ### 2. Backend Setup
-# Rename .env.template to .env and put in appropriate values (See step 4 and 5)
+### Rename .env.template to .env in /backend and put in appropriate values (See step 4 and 5)
 
 ```bash
 # Navigate to backend directory
@@ -99,7 +99,12 @@ npm run build
    - Application name: Whatever-you-want-to-call-it
    - Homepage URL: http://localhost:5173
    - Authorization callback URL: http://localhost:8088/auth/github/callback
-4. Copy the Client ID and Client Secret to your `.env` file
+4. Set up Github App permissions
+   - Contents: Read-only
+   - Issues: Read and write
+   - Pull requests: Read and write
+   - In account permissions Watching: Read-only
+7. Copy the Client ID and Client Secret to your `.env` file
 
 ### 5. Configure Environment Variables
 
