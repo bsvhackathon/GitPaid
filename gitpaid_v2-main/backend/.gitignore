@@ -1,6 +1,6 @@
 #ignore environment file
 .env
 node_modules
-dist/
-artifacts/
+dist
+artifacts
 package-lock.json
