@@ -32,6 +32,7 @@ const IssueBounty: React.FC = () => {
   
   // Fetch repository and issue details
   useEffect(() => {
+    console.log("IssueBounty component mounted");
     const fetchData = async () => {
       if (!owner || !repo || !issueNumber) {
         setError('Missing required parameters');
@@ -99,6 +100,7 @@ const IssueBounty: React.FC = () => {
     };
     
     fetchData();
+    return () => console.log("IssueBounty component unmounted");
   }, [owner, repo, issueNumber]);
   
   const handleBountySuccess = () => {

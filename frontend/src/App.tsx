@@ -47,7 +47,7 @@ const BountyDashboard = () => {
       fetchWalletBalance();
       fetchFundedBounties();
     }
-  }, [isAuthenticated]);
+  }, []);
 
   useEffect(() => {
     // If a repository is selected, fetch its issues

@@ -73,7 +73,7 @@ const AppRoutes: React.FC = () => {
         // Test connection to lookup service
         await lookupResolver.query({
           service: lookupServices.bounty,
-          query: { findAll: true }
+          query: 'findAllBounties'
         });
         console.log('Successfully connected to bounty lookup service');
       } catch (err) {

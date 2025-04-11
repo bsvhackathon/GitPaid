@@ -62,6 +62,7 @@ const ProfilePage: React.FC = () => {
   
   // Fetch funded bounties
   useEffect(() => {
+    console.log("ProfilePage component mounted");
     const fetchBounties = async () => {
       if (!isAuthenticated) return;
       
@@ -81,6 +82,7 @@ const ProfilePage: React.FC = () => {
     if (!authLoading && isAuthenticated) {
       fetchBounties();
     }
+    return () => console.log("ProfilePage component unmounted");
   }, [isAuthenticated, authLoading]);
   
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {

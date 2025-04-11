@@ -29,6 +29,8 @@ const Home: React.FC = () => {
   
   // Fetch funded bounties if user is authenticated
   useEffect(() => {
+    console.log("Home component mounted");
+    let isMounted = true;
     const fetchBounties = async () => {
       if (!isAuthenticated) return;
       
@@ -48,7 +50,12 @@ const Home: React.FC = () => {
     if (!authLoading && isAuthenticated) {
       fetchBounties();
     }
-  }, [isAuthenticated, authLoading]);
+
+    return () => {
+      isMounted = false;
+      console.log("Home component unmounted");
+    };
+  }, []);
   
   const handleCreateBounty = () => {
     navigate('/repositories');

@@ -1,5 +1,5 @@
 // Import additional components and utilities
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   Card,
   CardContent,
@@ -27,14 +27,25 @@ const WalletInfo: React.FC = () => {
   const [balance, setBalance] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const lastFetchTime = useRef<number>(0);
+  const value = ''
   
   // Add states for deposit dialog
   const [depositDialogOpen, setDepositDialogOpen] = useState<boolean>(false);
   const [depositAmount, setDepositAmount] = useState<string>('');
   const [depositAddress, setDepositAddress] = useState<string>('');
   const [depositLoading, setDepositLoading] = useState<boolean>(false);
+
+  async function delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
   
   const refreshBalance = async () => {
+    const now = Date.now();
+    if (now - lastFetchTime.current < 10000) {
+      console.log('Skipping refresh - too soon');
+      return;
+    }
     try {
       setLoading(true);
       const walletBalance = await getWalletBalance();
@@ -48,24 +59,28 @@ const WalletInfo: React.FC = () => {
     }
   };
   
-  // Fetch wallet balance on component mount
   useEffect(() => {
-    const fetchBalance = async () => {
-      try {
-        setLoading(true);
-        const walletBalance = await getWalletBalance();
-        setBalance(walletBalance);
-        setError(null);
-      } catch (error) {
-        console.error('Error fetching wallet balance:', error);
-        setError('Failed to load wallet balance');
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchBalance();
-  }, []);
+      console.log('WalletInfo component mounted');
+      const fetchBalance = async () => {
+        try {
+          setLoading(true);
+          const walletBalance = await getWalletBalance();
+          setBalance(walletBalance);
+          setError(null);
+        } catch (error) {
+          console.error('Error fetching wallet balance:', error);
+          setError('Failed to load wallet balance');
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+      fetchBalance();
+  
+      return () => {
+        console.log("WalletInfo component unmounted");
+      };
+    }, [value]);
   
   // Implement deposit function with BSV wallet integration
   const handleDeposit = async () => {
