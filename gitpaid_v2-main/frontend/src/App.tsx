@@ -64,7 +64,7 @@ const AppRoutes: React.FC = () => {
       // Remove query params
       window.history.replaceState({}, document.title, window.location.pathname);
     }
-  }, [checkAuthStatus]);
+  }, []);
 
   // Initialize lookup service connection
   useEffect(() => {

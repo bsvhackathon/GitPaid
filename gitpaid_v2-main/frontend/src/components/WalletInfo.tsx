@@ -28,7 +28,6 @@ const WalletInfo: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const lastFetchTime = useRef<number>(0);
-  const value = ''
   
   // Add states for deposit dialog
   const [depositDialogOpen, setDepositDialogOpen] = useState<boolean>(false);
@@ -80,7 +79,7 @@ const WalletInfo: React.FC = () => {
       return () => {
         console.log("WalletInfo component unmounted");
       };
-    }, [value]);
+    }, []);
   
   // Implement deposit function with BSV wallet integration
   const handleDeposit = async () => {
